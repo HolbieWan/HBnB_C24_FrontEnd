@@ -25,7 +25,7 @@ class ReviewList(Resource):
     @api.expect(review_model)
     @api.response(201, 'Review successfully created')
     @api.response(400, 'Invalid input data')
-    @api.doc('update_user', params=auth_header)
+    @api.doc('create_review', params=auth_header)
     @jwt_required()
     def post(self):
         """Register a new review"""
@@ -112,7 +112,7 @@ class ReviewResource(Resource):
     @api.response(200, 'Review updated successfully')
     @api.response(404, 'Review not found')
     @api.response(400, 'Invalid input data')
-    @api.doc('update_user', params=auth_header)
+    @api.doc('update_review', params=auth_header)
     @jwt_required()
     def put(self, review_id):
         """Update a review's information"""
@@ -148,7 +148,7 @@ class ReviewResource(Resource):
 
     @api.response(200, 'Review deleted successfully')
     @api.response(404, 'Review not found')
-    @api.doc('update_user', params=auth_header)
+    @api.doc('delete_review', params=auth_header)
     @jwt_required()
     def delete(self, review_id):
         """Delete a review"""
@@ -178,6 +178,7 @@ class PlaceReviewList(Resource):
             return {'error': 'Place not found'}, 404
 
         reviews = facade.get_reviews_by_place(place_id)
+        place_name = place.title
         reviews_list = []
         for review in reviews:
             reviews_list.append({
@@ -185,6 +186,7 @@ class PlaceReviewList(Resource):
                 'text': review.text,
                 'rating': review.rating,
                 'user_id': review.user_id,
-                'place_id': review.place_id
+                'place_id': review.place_id,
+                'place_name': place_name
             })
         return reviews_list, 200

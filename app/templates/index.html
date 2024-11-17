@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Places</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/png" href="/static/images/icon.png">
+</head>
+<body>
+    <header class="header" data-section-theme="light">
+        <div class="container">
+          <div class="logo">
+            <a href="/">
+              <img src="/static/images/logo.png" alt="hbnb logo" width="160" height="40">
+            </a>
+          </div>
+          <nav class="navbar-menu">
+            <ul class="nav" id="nav-menu">
+              <li class="nav-item">
+                <a href="/HBnB" class="nav-link active">Index</a>
+              </li>
+              <li class="nav-item">
+                <a href="/HBnB/place" class="nav-link">Place</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+    </header>
+    <main>
+        <section id="Places" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Available places</h2>
+                </header>
+                <!-- <section id="filter">
+                    <label for="country-filter">Filter by Country:</label>
+                    <select id="country-filter">
+                      <option value="">Select a country</option>
+                        Options will be populated dynamically
+                    </select>
+                </section> -->
+                <section id="places-list">
+                    <!-- Place cards will be dynamically populated here -->
+                </section>
+            </div>
+        </section>
+    </main>
+    <footer class="footer" data-section-theme="light">
+        <div class="container">
+          <p>&copy; 2024 HBnB. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="../static/get_all_places.js"></script>
+    <!-- <script src="../static/populate_dropdown_countries.js"></script> -->
+    <!-- <script src="../static/filter_by_country.js"></script> -->
+    <script src="/static/auth_links.js"></script>
+</body>
+</html>

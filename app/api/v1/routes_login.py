@@ -1,6 +1,7 @@
-from flask import current_app
+from flask import current_app, jsonify
 from flask_restx import Namespace, Resource, fields
-from flask_jwt_extended import create_access_token # type: ignore
+from flask_jwt_extended import create_access_token, jwt_required # type: ignore
+
 
 
 api = Namespace('auth', description='Authentication operations')
@@ -10,7 +11,7 @@ login_model = api.model('Login', {
     'password': fields.String(required=True, description='User password')
 })
 
-@api.route('/')
+@api.route('/login')
 class Login(Resource):
     @api.expect(login_model)
     def post(self):
@@ -33,4 +34,16 @@ class Login(Resource):
 
         access_token = create_access_token(identity={'id': str(user.id), 'is_admin': user.is_admin})
         
-        return {'access_token': access_token}, 200
+        return {
+            'access_token': access_token,
+            'user_id': str(user.id)
+        }, 200
+    
+@api.route('/logout')
+class Logout(Resource):
+    @jwt_required()
+    def post(self):
+        response = jsonify({"msg": "Logout successful"})
+        response.set_cookie('jwt_token', '', expires=0)
+        response.set_cookie('user_id', '', expires=0)
+        return response
