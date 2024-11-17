@@ -1,3 +1,10 @@
+import sys
+from pathlib import Path
+
+# Add the root directory to PYTHONPATH
+ROOT_DIR = Path(__file__).resolve().parent.parent  # Adjust this as needed
+sys.path.insert(0, str(ROOT_DIR))
+
 from flask.cli import FlaskGroup
 from app import create_app
 from app.extensions import db
@@ -37,4 +44,4 @@ def create_superuser():
 if __name__ == "__main__":
     cli()
 
-# To create super_user with CLI run: python3 manage.py create_superuser
+# To create super_user with CLI run in app repo: python3 utils/manage.py create_superuser

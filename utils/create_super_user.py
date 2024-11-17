@@ -8,7 +8,7 @@ with app.app_context():
     superuser = User(
         first_name="Super",
         last_name="Admin",
-        email="super.admin@gmail.com",
+        email="super.admin2@gmail.com",
         is_admin=True
     )
     superuser.hash_password("adminpassword")
@@ -18,4 +18,4 @@ with app.app_context():
     print("Superuser created successfully!")
 
 
-# Creating super_user with CLI, run in app repo: python3 manage.py create_superuser
+#To create super_user from this script, run in app repo: python3 -m utils.create_super_user
